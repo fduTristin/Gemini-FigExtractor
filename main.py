@@ -34,6 +34,7 @@ class FigExtractor:
         # Poll for completion (Gemini's internal processing)
         while uploaded_file.state.name == "PROCESSING":
             uploaded_file = self.client.files.get(name=uploaded_file.name)
+            time.sleep(2)
 
         if uploaded_file.state.name == "FAILED":
             raise Exception(f"Gemini processing failed for {pdf_path}")
